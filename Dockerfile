@@ -26,4 +26,4 @@ RUN apk update \
 # Change to user and copy code
 USER app
 COPY . /app
-COPY docker/dokku/* /app
+COPY docker/dokku/* /app/
