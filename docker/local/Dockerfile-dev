@@ -1,9 +1,6 @@
 FROM python:3.6.2-alpine3.6
 ENV PYTHONBUFFERED 1
 
-# Install pipenv
-RUN pip install pipenv
-
 # Add new user to run the whole thing as non-root
 RUN addgroup -S app
 RUN adduser -G app -h /app -D app
@@ -13,7 +10,17 @@ RUN adduser -G app -h /app -D app
 # correctly using the entrypoint.sh, while activating the virtual environment
 COPY Pipfile /app
 WORKDIR /app
-RUN pipenv install --system
+
+# Install build dependencies for PostgreSQL. While we're at it, also install
+# pipenv and all python requirements. Then remove unneeded build dependencies.
+RUN apk update \
+    && apk add --no-cache --virtual .build-deps \
+       gcc \
+       musl-dev \
+    && apk add postgresql postgresql-dev \
+    && pip install pipenv \
+    && pipenv install --system \
+    && apk del .build-deps
 
 # Change to user and copy code
 USER app

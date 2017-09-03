@@ -1,12 +1,25 @@
 version: '3'
 
 services:
+  db:
+    environment:
+      POSTGRES_DB: db_app
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_pass
+    restart: always
+    image: postgres:9.6-alpine
+
   web:
     build:
       context: .
       dockerfile: ./docker/local/Dockerfile-dev
     command: python3 manage.py runserver 0.0.0.0:8000
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
     volumes:
       - .:/app
+    links:
+      - db
     ports:
       - "8000:8000"

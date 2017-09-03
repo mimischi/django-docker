@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "12443f346b70cedfd8dac85bc0abeba8fa04aade2a5316e6662f47508a6bacd8"
+            "sha256": "6f8a62c8033630ff1da2a8383bb4f9bdd07a3cfef34f6c9748354aac87531e08"
         },
         "requires": {},
         "sources": [
@@ -19,6 +19,10 @@
         "gunicorn": {
             "hash": "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
             "version": "==19.7.1"
+        },
+        "psycopg2": {
+            "hash": "sha256:471e3140e1cb241ecb53602cdc98fe305b82c854cfa53c3e343d642683dc96c7",
+            "version": "==2.7.3.1"
         },
         "pytz": {
             "hash": "sha256:d1d6729c85acea5423671382868627129432fba9a89ecbb248d8d1c7a9f01c67",

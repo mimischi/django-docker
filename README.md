@@ -14,8 +14,8 @@ approach of Python requirement management.
 
 ## Current status
 
-Currently the local development works using a default Django project with a
-local SQLite database. We're going to add PostgreSQL support later.
+Currently the local development works using a dockerized default Django project
+with a dockerized PostgreSQL instance.
 
 For the production part, we'd like to create a deployment process to our
 [Dokku](https://github.com/dokku/dokku) server, using a separate Dockerfile.
@@ -28,5 +28,6 @@ an automatic deploy to our Dokku server using Travis-CI. Getting
 
 ## Local development
 
-Running `docker-compose up --build -d` will build the app and start it. It will
-then be available under [localhost:8000](http://localhost:8000).
+Running `docker-compose up --build -d` will build the app and postgress, migrate
+and start it. It will then be available under
+[localhost:8000](http://localhost:8000).
