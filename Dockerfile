@@ -18,6 +18,7 @@ RUN apk update \
        gcc \
        musl-dev \
     && apk add postgresql postgresql-dev \
+    && pip install --upgrade pip setuptools \
     && pip install pipenv \
     && pipenv install --system \
     && apk del .build-deps
