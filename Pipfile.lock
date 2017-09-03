@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0ea149fe88d24464fb10cb50b5a5cc9fcd94d97757b68e13d476f981070c4f9b"
+            "sha256": "54ade5e45dd1934751269689eca2c434b8177d40a4efef41994fdc298162c78e"
         },
         "requires": {},
         "sources": [
@@ -43,6 +43,10 @@
         "six": {
             "hash": "sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1",
             "version": "==1.10.0"
+        },
+        "whitenoise": {
+            "hash": "sha256:1d62a003a0ab747de96da45c831cbb512dcb7f69c1ef0bd20b1cd4ae45d8a0c4",
+            "version": "==3.3.0"
         }
     },
     "develop": {
@@ -103,8 +107,8 @@
             "version": "==2017.2"
         },
         "setuptools": {
-            "hash": "sha256:42bafe9efb8f771f6c96bb8e052e1de7474270719d471d596b9d91e53e8befd4",
-            "version": "==36.3.0"
+            "hash": "sha256:4d54c0bfee283e78609169213f9c075827d5837086f58b588b417b093c23464b",
+            "version": "==36.4.0"
         },
         "simplegeneric": {
             "hash": "sha256:dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173",

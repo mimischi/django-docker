@@ -8,6 +8,7 @@ gunicorn = "*"
 psycopg2 = "*"
 django-environ = "*"
 gevent = "*"
+whitenoise = "*"
 
 [dev-packages]
 Werkzeug = "*"
