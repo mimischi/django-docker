@@ -19,4 +19,4 @@ RUN pipenv install --system
 USER app
 COPY . /app
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/app/docker/local/entrypoint.sh"]
