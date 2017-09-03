@@ -19,7 +19,9 @@ CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
 # PRODUCTION MIDDLEWARE
-WHITENOISE_MIDDLEWARE = ('whitenoise.middleware.WhiteNoiseMiddleware', )
+WHITENOISE_MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
 MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
 
 # STATICFILES
