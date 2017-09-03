@@ -14,6 +14,7 @@ WORKDIR /app
 # Install build dependencies for PostgreSQL. While we're at it, also install
 # pipenv and all python requirements. Then remove unneeded build dependencies.
 RUN apk update \
+    && apk add bash \
     && apk add --no-cache --virtual .build-deps \
        gcc \
        musl-dev \
