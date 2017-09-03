@@ -14,16 +14,17 @@ WORKDIR /app
 # Install build dependencies for PostgreSQL. While we're at it, also install
 # pipenv and all python requirements. Then remove unneeded build dependencies.
 RUN apk update \
+    && apk add bash \
     && apk add --no-cache --virtual .build-deps \
        gcc \
        musl-dev \
     && apk add postgresql postgresql-dev \
+    && pip install --upgrade pip setuptools \
     && pip install pipenv \
-    && pipenv install --dev --system \
+    && pipenv install --system \
     && apk del .build-deps
 
 # Change to user and copy code
 USER app
 COPY . /app
-
-ENTRYPOINT ["/app/docker/local/entrypoint.sh"]
+COPY docker/dokku/* /app/
