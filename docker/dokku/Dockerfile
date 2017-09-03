@@ -19,11 +19,10 @@ RUN apk update \
        musl-dev \
     && apk add postgresql postgresql-dev \
     && pip install pipenv \
-    && pipenv install --dev --system \
+    && pipenv install --system \
     && apk del .build-deps
 
 # Change to user and copy code
 USER app
 COPY . /app
-
-ENTRYPOINT ["/app/docker/local/entrypoint.sh"]
+COPY docker/dokku/* /app

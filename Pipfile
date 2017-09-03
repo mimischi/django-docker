@@ -6,3 +6,10 @@ verify_ssl = true
 Django = "*"
 gunicorn = "*"
 psycopg2 = "*"
+django-environ = "*"
+gevent = "*"
+
+[dev-packages]
+Werkzeug = "*"
+django-debug-toolbar = "*"
+ipdb = "*"
