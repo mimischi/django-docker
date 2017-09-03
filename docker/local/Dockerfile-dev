@@ -18,6 +18,7 @@ RUN apk update \
        gcc \
        musl-dev \
     && apk add --no-cache postgresql postgresql-dev \
+    && pip install --upgrade setuptools \
     && pip install pipenv \
     && pipenv install --dev --system --verbose \
     && apk del .build-deps
