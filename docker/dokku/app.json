@@ -1,10 +1,7 @@
 {
     "scripts": {
         "dokku": {
-            "predeploy": {
-                "python /app/manage.py migrate collectstatic";
-                "python /app/manage.py migrate --noinput"
-            }
+            "predeploy": "python /app/manage.py migrate collectstatic && python /app/manage.py migrate --noinpit"
         }
     }
 }
