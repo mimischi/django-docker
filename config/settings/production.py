@@ -25,7 +25,7 @@ ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 INSTALLED_APPS += ("gunicorn", )
 
 # DATABASE
-DATABASES['default'] = env.db("DATABASE_URL")
+DATABASES = {'default': env.db("DATABASE_URL")}
 
 # ADMIN URL
 ADMIN_URL = env('DJANGO_ADMIN_URL')
