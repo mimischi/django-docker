@@ -1,0 +1,29 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "12443f346b70cedfd8dac85bc0abeba8fa04aade2a5316e6662f47508a6bacd8"
+        },
+        "requires": {},
+        "sources": [
+            {
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "Django": {
+            "hash": "sha256:6fd30e05dc9af265f7d7d10cfb0efa013e6236db0853c9f47c74c585587c5a57",
+            "version": "==1.11.4"
+        },
+        "gunicorn": {
+            "hash": "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
+            "version": "==19.7.1"
+        },
+        "pytz": {
+            "hash": "sha256:d1d6729c85acea5423671382868627129432fba9a89ecbb248d8d1c7a9f01c67",
+            "version": "==2017.2"
+        }
+    },
+    "develop": {}
+}
