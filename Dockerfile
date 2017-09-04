@@ -8,7 +8,7 @@ RUN adduser -G app -h /app -D app
 # Copy Pipfile and install system-wide
 # We're installing system-wide, because we currently have problems
 # correctly using the entrypoint.sh, while activating the virtual environment
-COPY Pipfile /app
+COPY Pipfile Pipfile.lock /app/
 WORKDIR /app
 
 # Install build dependencies for PostgreSQL. While we're at it, also install
@@ -26,4 +26,9 @@ RUN apk update \
 # Change to user and copy code
 USER app
 COPY . /app
+
+# Copy dokku specific files
 COPY docker/dokku/* /app/
+
+# Let Django collect all staticfiles
+RUN python /app/manage.py collectstatic --noinput
