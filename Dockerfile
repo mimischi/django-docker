@@ -18,7 +18,7 @@ RUN apk update \
     && apk add --no-cache --virtual .build-deps \
        gcc \
        musl-dev \
-    && apk add postgresql postgresql-dev \
+    && apk add --no-cache postgresql postgresql-dev \
     && pip install pipenv \
     && pipenv install --system \
     && apk del .build-deps
