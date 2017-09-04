@@ -1,13 +1,13 @@
 # Use Django with Docker
 
-This repository is used to test a new repository layout to develop Django
-applications with Docker containers. To bring it up to point, we're also using
-Pipfiles instead of `requirements.txt` for our requirement needs.
+This repository is used to test a new project layout to develop Django
+applications within Docker containers. To be very fancy, we're also using
+`Pipfile` instead of `requirements.txt` for our Python dependencies.
 
 ## Details
 
 We're using `Alpine Linux` for the base image, to start with a small container
-size. The official python image `python:3.6.2-alpine3.6` provides the Python
+size. The official Python image `python:3.6.2-alpine3.6` provides the Python
 interpreter. Further we utilize
 [`pipenv`](https://github.com/kennethreitz/pipenv)) to try a new bleeding-edge
 approach of Python requirement management.
@@ -28,14 +28,18 @@ also be neat.
 
 ## Local development
 
-Running `docker-compose up --build -d` will build the app and postgress, migrate
-and start it. It will then be available under
+Running `docker-compose up --build -d` will build the app and PostgreSQL,
+collect all staticfiles and start both services. It will then migrate the Django
+models to the database. The app will then be available under
 [localhost:8000](http://localhost:8000).
 
 ## Deployment to production (via Dokku)
 
-After setting up the dokku server as a `git remote`, one needs to set up the app
-on the remote machine.
+### Prepare app on Dokku host
+
+Before deployment, one needs to set up the app and PostgreSQL database on the
+Dokku host. For the sake of simplicity we're going to name the Dokku app
+`djangodocker`.
 
 ```
 # Create app
@@ -46,10 +50,28 @@ $ dokku postgres:create djangodocker-postgres
 $ dokku postgres:link djangodocker-postgres djangodocker
 
 # Set the bare minimum configuration
-$ dokku config:set --no-restart DJANGO_ADMIN_URL="/admin"
-$ dokku config:set --no-restart DJANGO_ALLOWED_HOSTS=djangotest.example.com
-$ dokku config:set --no-restart DJANGO_SECRET_KEY=$(openssl rand -base64 64)
-$ dokku config:set --no-restart DJANGO_SETTINGS_MODULE=config.settings.production
+$ dokku config:set --no-restart djangodocker DJANGO_ADMIN_URL="/admin"
+$ dokku config:set --no-restart djangodocker DJANGO_ALLOWED_HOSTS=djangodocker.example.com
+$ dokku config:set --no-restart djangodocker DJANGO_SECRET_KEY=$(echo `openssl rand -base64 64` | tr -d ' ')
+$ dokku config:set --no-restart djangodocker DJANGO_SETTINGS_MODULE=config.settings.production
 ```
+You may also need to set the domain using `dokku domain:set djangodocker djangodocker.example.com`.
 
-Afterwards deploying the usual way via `git push` pushes the app to production.
+### Setup Dokku server as `git remote`
+
+To successfully push your app to the Dokku host, you need to set up the server
+as a `git remote`:
+
+`git remote add dokku dokku@djangodocker.example.com:djangodocker`
+
+### Deployment
+
+Deploying the `master` branch of the app is straightforward:
+
+`git push dokku master`
+
+If you want to deploy another branch (e.g. `newfeature`), you need to use this syntax:
+
+`git push dokku newfeature:master`
+
+More information can be found in the [official Dokku documentation](http://dokku.viewdocs.io/dokku/getting-started/installation/).
