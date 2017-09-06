@@ -3,6 +3,7 @@
         "hash": {
             "sha256": "54ade5e45dd1934751269689eca2c434b8177d40a4efef41994fdc298162c78e"
         },
+        "pipfile-spec": 1,
         "requires": {},
         "sources": [
             {
@@ -12,123 +13,85 @@
         ]
     },
     "default": {
-        "Django": {
-            "hash": "sha256:6fd30e05dc9af265f7d7d10cfb0efa013e6236db0853c9f47c74c585587c5a57",
-            "version": "==1.11.4"
+        "django": {
+            "version": "==1.11.5"
         },
         "django-environ": {
-            "hash": "sha256:e9c171b9d5f540e6f3bc42866941d9cd0bd77fb110a7c13a7c4857a2c08cfa40",
             "version": "==0.4.4"
         },
         "gevent": {
-            "hash": "sha256:81cb24e0f7bd9888596364e8d8ed0d65c2547c84884c67bb46d956faeed67396",
             "version": "==1.2.2"
         },
         "greenlet": {
-            "hash": "sha256:e5451e1ce06b74a4861576c2db74405a4398c4809a105774550a9e52cfc8c4da",
             "version": "==0.4.12"
         },
         "gunicorn": {
-            "hash": "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
             "version": "==19.7.1"
         },
         "psycopg2": {
-            "hash": "sha256:471e3140e1cb241ecb53602cdc98fe305b82c854cfa53c3e343d642683dc96c7",
             "version": "==2.7.3.1"
         },
         "pytz": {
-            "hash": "sha256:d1d6729c85acea5423671382868627129432fba9a89ecbb248d8d1c7a9f01c67",
             "version": "==2017.2"
         },
         "six": {
-            "hash": "sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1",
             "version": "==1.10.0"
         },
         "whitenoise": {
-            "hash": "sha256:1d62a003a0ab747de96da45c831cbb512dcb7f69c1ef0bd20b1cd4ae45d8a0c4",
             "version": "==3.3.0"
         }
     },
     "develop": {
-        "Django": {
-            "hash": "sha256:6fd30e05dc9af265f7d7d10cfb0efa013e6236db0853c9f47c74c585587c5a57",
-            "version": "==1.11.4"
-        },
-        "Pygments": {
-            "hash": "sha256:78f3f434bcc5d6ee09020f92ba487f95ba50f1e3ef83ae96b9d5ffa1bab25c5d",
-            "version": "==2.2.0"
-        },
-        "Werkzeug": {
-            "hash": "sha256:e8549c143af3ce6559699a01e26fa4174f4c591dbee0a499f3cd4c3781cdec3d",
-            "version": "==0.12.2"
-        },
         "decorator": {
-            "hash": "sha256:95a26b17806e284452bfd97fa20aa1e8cb4ee23542bda4dbac5e4562aa1642cd",
             "version": "==4.1.2"
         },
+        "django": {
+            "version": "==1.11.5"
+        },
         "django-debug-toolbar": {
-            "hash": "sha256:0b4d2b1ac49a8bc5604518e8e20f56c1c08c0c4873336107e7c773c42537876b",
             "version": "==1.8"
         },
         "ipdb": {
-            "hash": "sha256:9ea256b4280fbe12840fb9dfc3ce498c6c6de03352eca293e4400b0dfbed2b28",
             "version": "==0.10.3"
         },
         "ipython": {
-            "hash": "sha256:cd44c7f5ccb2b349ffd6ede10d8e4204c9ab1ede4a8a6c40220cfeb07069171a",
             "version": "==6.1.0"
         },
-        "ipython_genutils": {
-            "hash": "sha256:72dd37233799e619666c9f639a9da83c34013a73e8bbc79a7a6348d93c61fab8",
-            "version": "==0.2.0"
-        },
         "jedi": {
-            "hash": "sha256:96678411f2ffa444da3a5e7fdd4adc513b728a4a4617b30308be5c950722424b",
             "version": "==0.10.2"
         },
         "pexpect": {
-            "hash": "sha256:f853b52afaf3b064d29854771e2db509ef80392509bde2dd7a6ecf2dfc3f0018",
             "version": "==4.2.1"
         },
         "pickleshare": {
-            "hash": "sha256:c9a2541f25aeabc070f12f452e1f2a8eae2abd51e1cd19e8430402bdf4c1d8b5",
             "version": "==0.7.4"
         },
-        "prompt_toolkit": {
-            "hash": "sha256:1df952620eccb399c53ebb359cc7d9a8d3a9538cb34c5a1344bdbeb29fbcc381",
+        "prompt-toolkit": {
             "version": "==1.0.15"
         },
-        "ptyprocess": {
-            "hash": "sha256:e8c43b5eee76b2083a9badde89fd1bbce6c8942d1045146e100b7b5e014f4f1a",
-            "version": "==0.5.2"
+        "pygments": {
+            "version": "==2.2.0"
         },
         "pytz": {
-            "hash": "sha256:d1d6729c85acea5423671382868627129432fba9a89ecbb248d8d1c7a9f01c67",
             "version": "==2017.2"
         },
-        "setuptools": {
-            "hash": "sha256:4d54c0bfee283e78609169213f9c075827d5837086f58b588b417b093c23464b",
-            "version": "==36.4.0"
-        },
         "simplegeneric": {
-            "hash": "sha256:dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173",
             "version": "==0.8.1"
         },
         "six": {
-            "hash": "sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1",
             "version": "==1.10.0"
         },
         "sqlparse": {
-            "hash": "sha256:740a023ef38ce11bbb99a9d143856f56ef4ec5b0d7a853f58c02c65b035114c4",
             "version": "==0.2.3"
         },
         "traitlets": {
-            "hash": "sha256:c6cb5e6f57c5a9bdaa40fa71ce7b4af30298fbab9ece9815b5d995ab6217c7d9",
             "version": "==4.3.2"
         },
         "wcwidth": {
-            "hash": "sha256:f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c",
             "version": "==0.1.7"
+        },
+        "werkzeug": {
+            "version": "==0.12.2"
         }
     }
 }
