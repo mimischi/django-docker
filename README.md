@@ -17,7 +17,11 @@ approach of Python requirement management.
 Currently the local development works using a dockerized default Django project
 with a dockerized PostgreSQL instance.
 
-The project can also be deployed to [Dokku](https://github.com/dokku/dokku), using the `Dockerfile` in the root of this repository.
+The project can also be deployed to [Dokku](https://github.com/dokku/dokku).
+**Note:** In the current layout, with the `Dockerfile` residing under
+`./docker/dokku/Dockerfile` you will need to install the
+[`dokku-dockerfile`](https://github.com/mimischi/dokku-dockerfile) plugin and
+set the path accordingly.
 
 In the future I'd also like to play around with
 [Travis-CI](https://travis-ci.org) and an automatic deploy to our Dokku server
@@ -54,8 +58,13 @@ $ dokku config:set --no-restart djangodocker DJANGO_ADMIN_URL="/admin"
 $ dokku config:set --no-restart djangodocker DJANGO_ALLOWED_HOSTS=djangodocker.example.com
 $ dokku config:set --no-restart djangodocker DJANGO_SECRET_KEY=$(echo `openssl rand -base64 64` | tr -d ' ')
 $ dokku config:set --no-restart djangodocker DJANGO_SETTINGS_MODULE=config.settings.production
+
+# Make sure the plugin `dokku-dockerfile` is installed
+$ dokku dockerfile:set djangodocker docker/dokku/Dockerfile
 ```
-You may also need to set the domain using `dokku domain:set djangodocker djangodocker.example.com`.
+
+You may also need to set the domain using `dokku domain:set djangodocker
+djangodocker.example.com`.
 
 ### Setup Dokku server as `git remote`
 
@@ -70,8 +79,10 @@ Deploying the `master` branch of the app is straightforward:
 
 `git push dokku master`
 
-If you want to deploy another branch (e.g. `newfeature`), you need to use this syntax:
+If you want to deploy another branch (e.g. `newfeature`), you need to use this
+syntax:
 
 `git push dokku newfeature:master`
 
-More information can be found in the [official Dokku documentation](http://dokku.viewdocs.io/dokku/getting-started/installation/).
+More information can be found in the [official Dokku
+documentation](http://dokku.viewdocs.io/dokku/getting-started/installation/).
