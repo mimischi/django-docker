@@ -20,7 +20,7 @@ RUN apk update \
        musl-dev \
     && apk add --no-cache postgresql postgresql-dev \
     && pip install pipenv \
-    && pipenv install --system \
+    && pipenv install --system --verbose \
     && apk del .build-deps
 
 # Change to user and copy code
