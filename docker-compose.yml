@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: db_pass
     restart: always
     image: postgres:9.6-alpine
+    ports:
+      - "5432:5432"
 
   web:
     build:

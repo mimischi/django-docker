@@ -21,7 +21,7 @@ DATABASES = {
         'NAME': 'db_app',
         'USER': 'db_user',
         'PASSWORD': 'db_pass',
-        'HOST': 'db',
+        'HOST': 'db' if env('PYTHONBUFFERED', default=False) else 'localhost',
         'PORT': 5432,
     }
 }
