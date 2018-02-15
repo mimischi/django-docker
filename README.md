@@ -1,40 +1,59 @@
-# Use Django with Docker
+# Develop and deploy Django applications with Docker
+
+[![Build Status](https://travis-ci.org/mimischi/django-docker.svg?branch=master)](https://travis-ci.org/mimischi/django-docker) [![codecov](https://codecov.io/gh/mimischi/django-docker/branch/master/graph/badge.svg)](https://codecov.io/gh/mimischi/django-docker) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 This repository is used to test a new project layout to develop Django
 applications within Docker containers. To be very fancy, we're also using
-`Pipfile` instead of `requirements.txt` for our Python dependencies.
+`Pipfile` instead of `requirements.txt` for our Python dependencies. Deployment
+to production is handled by a remote [Dokku](http://dokku.viewdocs.io/dokku/)
+instance.
 
 ## Details
 
 We're using `Alpine Linux` for the base image, to start with a small container
-size. The official Python image `python:3.6.2-alpine3.6` provides the Python
+size. The official Python image `python:alpine3.6` provides the Python
 interpreter. Further we utilize
 [`pipenv`](https://github.com/kennethreitz/pipenv)) to try a new bleeding-edge
 approach of Python requirement management.
 
-## Current status
+**Note: The very first production deploy to Dokku is very slow and non-verbose
+during dependency installation with pipenv. Subsequent deploys are way faster
+(if python dependencies were not changed).**
 
-Currently the local development works using a dockerized default Django project
-with a dockerized PostgreSQL instance.
+## Features
 
-The project can also be deployed to [Dokku](https://github.com/dokku/dokku).
-**Note:** In the current layout, with the `Dockerfile` residing under
-`./docker/dokku/Dockerfile` you will need to install the
+* Develop inside of Docker containers! (Both Django and PostgreSQL run inside of
+  their own containers)
+* Django `runserver_plus` is sequentially restarted, if the application crashes
+  for any reason.
+* Use `Makefile` for common commands (`docker-compose build`, `python manage.py
+  makemessages`, ...).
+* Uses [WhiteNoise](http://whitenoise.evans.io/en/stable/) to manage static
+  files.
+* Run continuous integration of Travis-CI.
+* Deploy to [Dokku](https://github.com/dokku/dokku) for production.
+* Use [Sentry](https://sentry.io/) for error reporting on your production
+  instance.
+  * **Psssst! You can easily run your own [Sentry instance on
+  Dokku](https://github.com/mimischi/dokku-sentry)!**
+
+**Note: In the current layout, with the `Dockerfile` residing under
+`./docker/dokku/Dockerfile`, you will need to install the
 [`dokku-dockerfile`](https://github.com/mimischi/dokku-dockerfile) plugin and
-set the path accordingly.
+set the path accordingly.****
 
-In the future I'd also like to play around with
-[Travis-CI](https://travis-ci.org) and an automatic deploy to our Dokku server
-using Travis-CI. Getting [Celery](http://www.celeryproject.org/) to run would
-also be neat.
+### Planned
+
+* It would be neat to get [Celery](http://www.celeryproject.org/) to work.
 
 # Usage
 
 ## Local development
 
-Running `docker-compose up --build -d` will build the app and PostgreSQL,
-collect all staticfiles and start both services. It will then migrate the Django
-models to the database. The app will then be available under
+Running `make build` will download all required images (`python:alphine3.6` and
+`postgresql:9`) and build the app, collect all staticfiles and start both
+services. Running `docker-compose up` will migrate the Django models to the
+database. The app will then be available under
 [localhost:8000](http://localhost:8000).
 
 ## Deployment to production (via Dokku)
@@ -43,11 +62,11 @@ models to the database. The app will then be available under
 
 Before deployment, one needs to set up the app and PostgreSQL database on the
 Dokku host. For the sake of simplicity we're going to name the Dokku app
-`djangodocker`.
+`djangodocker` in this example.
 
 ```
 # Create app
-$ dokku app:create djangodocker
+$ dokku apps:create djangodocker
 
 # Create PostgreSQL database and link it to the app
 $ dokku postgres:create djangodocker-postgres
@@ -56,14 +75,14 @@ $ dokku postgres:link djangodocker-postgres djangodocker
 # Set the bare minimum configuration
 $ dokku config:set --no-restart djangodocker DJANGO_ADMIN_URL="/admin"
 $ dokku config:set --no-restart djangodocker DJANGO_ALLOWED_HOSTS=djangodocker.example.com
-$ dokku config:set --no-restart djangodocker DJANGO_SECRET_KEY=$(echo `openssl rand -base64 64` | tr -d ' ')
+$ dokku config:set --no-restart djangodocker DJANGO_SECRET_KEY=$(echo `openssl rand -base64 100` | tr -d \=+ | cut -c 1-64)
 $ dokku config:set --no-restart djangodocker DJANGO_SETTINGS_MODULE=config.settings.production
-
+$ dokku config:set --no-restart djangodocker DJANGO_SENTRY_DSN=https://your:sentry-dsn@sentry.com/1234
 # Make sure the plugin `dokku-dockerfile` is installed
 $ dokku dockerfile:set djangodocker docker/dokku/Dockerfile
 ```
 
-You may also need to set the domain using `dokku domain:set djangodocker
+You may also need to set the domain using `dokku domains:set djangodocker
 djangodocker.example.com`.
 
 ### Setup Dokku server as `git remote`
