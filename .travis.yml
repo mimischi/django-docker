@@ -1,0 +1,25 @@
+sudo: false
+
+services:
+  - postgresql
+
+language: python
+python:
+  - "3.6"
+
+env:
+  - TRAVIS_CI=True
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+install:
+  - make
+before_script:
+  - psql -c "CREATE DATABASE test_db_app;" -U postgres
+  - psql -c "CREATE USER db_user WITH PASSWORD 'db_pass';" -U postgres
+script:
+  - make ci
+after_success:
+  - codecov

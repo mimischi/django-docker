@@ -12,6 +12,7 @@ gunicorn = "*"
 django-environ = "*"
 gevent = "*"
 whitenoise = "*"
+raven = "*"
 
 
 [dev-packages]
@@ -21,3 +22,10 @@ django-debug-toolbar = "*"
 ipdb = "*"
 pytest = "*"
 pytest-django = "*"
+django-extensions = "*"
+pytest-isort = "*"
+pytest-sugar = "*"
+coverage = "*"
+django-coverage-plugin = "*"
+pytest-cov = "*"
+codecov = "*"
