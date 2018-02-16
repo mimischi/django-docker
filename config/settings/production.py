@@ -1,4 +1,6 @@
-from .common import *
+import logging
+
+from .common import *  # noqa
 
 # SECRET CONFIGURATION
 SECRET_KEY = env('DJANGO_SECRET_KEY')
@@ -35,6 +37,7 @@ INSTALLED_APPS += ("gunicorn", )
 
 # DATABASE
 DATABASES = {'default': env.db("DATABASE_URL")}
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # ADMIN URL
 ADMIN_URL = env('DJANGO_ADMIN_URL')
