@@ -1,4 +1,4 @@
-.PHONY: init ci analyze build rebuild lang-make lang-compile
+.PHONY: init ci analyze build rebuild migrate lang-make lang-compile
 
 init:
 	pip install pipenv --upgrade
@@ -12,6 +12,8 @@ build:
 	docker-compose build
 rebuild:
 	docker-compose build --force-rm --no-cache
+migrate:
+	docker-compose run --rm web python manage.py migrate
 lang-make:
 	pipenv run python manage.py makemessages --no-location --no-wrap
 lang-compile:
