@@ -1,6 +1,7 @@
 .PHONY: init ci analyze build rebuild migrate lang-make lang-compile
 
 init:
+	rm Pipfile.lock && pipenv lock
 	pip install pipenv --upgrade
 	pipenv install --dev --skip-lock
 ci:
