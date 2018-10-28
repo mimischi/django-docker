@@ -51,10 +51,10 @@ set the path accordingly.****
 ## Local development
 
 Running `make build` will download all required images (`python:alphine3.6` and
-`postgresql:9`) and build the app, collect all staticfiles and start both
-services. Running `docker-compose up` will migrate the Django models to the
-database. The app will then be available under
-[localhost:8000](http://localhost:8000).
+`postgresql:9`) and build the app. Next you need to run `make migrate` to run
+all database migrations, after which you can actually start using this project.
+Running `docker-compose up` will collect all staticfiles and start both
+services. The app will be available via [localhost:8000](http://localhost:8000).
 
 ## Deployment to production (via Dokku)
 
