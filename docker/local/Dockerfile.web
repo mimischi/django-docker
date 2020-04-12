@@ -16,7 +16,6 @@ RUN apk update \
        jpeg \
        gettext \
        tzdata \
-       libffi-dev \
        curl
 
 # Set the correct timezone
