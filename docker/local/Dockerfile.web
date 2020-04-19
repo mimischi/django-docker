@@ -1,6 +1,6 @@
 FROM python:alpine3.7
 # Tell python not to produce any `__pycache__` and `*.pyc` files
-ENV PYTHONBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 INSIDE_DOCKER=1 POETRY_VERSION=1.0.5 POETRY_VIRTUALENVS_CREATE=false
+ENV PYTHONBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 INSIDE_DOCKER=1 POETRY_VERSION=1.0.5 POETRY_VIRTUALENVS_CREATE=true
 
 # Install all dependencies needed to install our python requirements
 RUN apk update \

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -119,3 +120,7 @@ STATICFILES_DIRS = (str(APPS_DIR.path('static')), )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder', )
+
+# Locale
+LANGUAGES = [("de", _("German")), ("en", _("English"))]
+LOCALE_PATHS = [str(ROOT_DIR("locale"))]
