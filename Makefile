@@ -1,10 +1,10 @@
 .PHONY: init ci analyze build rebuild migrate lang-make lang-compile
 
 init:
-	pip install pipenv --upgrade
-	pipenv install --dev --skip-lock
+	curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+	poetry install
 ci:
-	pipenv run pytest --cov=./
+	pytest --cov=./
 analyze:
 	pipenv run flake8 .
 	pipenv run isort -v

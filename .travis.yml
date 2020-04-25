@@ -5,10 +5,10 @@ services:
 
 language: python
 python:
-  - "3.6"
+  - "3.7"
 
 env:
-  - TRAVIS_CI=True
+  - TRAVIS_CI=True PATH="$PATH:$HOME/.poetry/bin" POETRY_VIRTUALENVS_CREATE=false
 
 cache:
   directories:
