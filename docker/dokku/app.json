@@ -1,7 +1,7 @@
 {
     "scripts": {
         "dokku": {
-            "predeploy": "python /app/manage.py migrate --noinput"
+            "predeploy": "sh /app/deploy.sh"
         }
     }
 }
