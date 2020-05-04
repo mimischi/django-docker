@@ -4,21 +4,15 @@
 
 This repository is used to test a new project layout to develop Django
 applications within Docker containers. To be very fancy, we're also using
-`Pipfile` instead of `requirements.txt` for our Python dependencies. Deployment
+`poetry.toml` instead of `requirements.txt` for our Python dependencies. Deployment
 to production is handled by a remote [Dokku](http://dokku.viewdocs.io/dokku/)
 instance.
 
 ## Details
 
-We're using `Alpine Linux` for the base image, to start with a small container
-size. The official Python image `python:alpine3.6` provides the Python
-interpreter. Further we utilize
-[`pipenv`](https://github.com/kennethreitz/pipenv)) to try a new bleeding-edge
-approach of Python requirement management.
-
-**Note: The very first production deploy to Dokku is very slow and non-verbose
-during dependency installation with pipenv. Subsequent deploys are way faster
-(if python dependencies were not changed).**
+We're using `Python 3.7-slim` for the base image as a trade-off of container size and build time.
+ Further we utilize [`poetry`](https://github.com/python-poetry/poetry) to try out a new approach
+  of Python requirement management.
 
 ## Features
 
@@ -50,8 +44,8 @@ set the path accordingly.****
 
 ## Local development
 
-Running `make build` will download all required images (`python:alphine3.6` and
-`postgresql:9`) and build the app. Next you need to run `make migrate` to run
+Running `make build` will download all required images (`python:3.7-slim` and
+`postgresql:9.6-alpine`) and build the app. Next you need to run `make migrate` to run
 all database migrations, after which you can actually start using this project.
 Running `docker-compose up` will collect all staticfiles and start both
 services. The app will be available via [localhost:8000](http://localhost:8000).
